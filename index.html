@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#dff6ff">
+  <title>LearnX — Smart Study OS</title>
+  <link rel="stylesheet" href="styles.css"><link rel="manifest" href="manifest.json">
+</head>
+<body>
+  <div id="app">
+
+    <!-- Fingerprint gate -->
+    <section id="fingerprintScreen" class="screen fingerprint-screen" aria-label="Unlock LearnX">
+      <div class="fp-orb">
+        <button id="fingerprintBtn" class="fingerprint-btn" aria-label="Buka LearnX">
+          <span class="fp-lines">◉</span>
+          <span class="fp-ring"></span>
+        </button>
+      </div>
+      <div class="fp-copy">
+        <span class="eyebrow">LEARNX</span>
+        <h1>Sentuh untuk mulai</h1>
+        <p>Ruang belajar pribadi yang tenang, cepat, dan responsif.</p>
+      </div>
+    </section>
+
+    <!-- Intro -->
+    <section id="introScreen" class="screen intro-screen hidden" aria-label="Intro LearnX">
+      <video id="introVideo" class="intro-video" autoplay muted loop playsinline preload="auto">
+        <source src="assets/intro.mp4" type="video/mp4">
+      </video>
+      <div class="intro-vignette"></div>
+      <div class="intro-brand">LearnX</div>
+      <button id="skipIntro" class="glass-btn skip-btn">Skip intro <span>↗</span></button>
+      <div class="intro-bottom">
+        <span>SMART STUDY OS</span>
+        <span>01 / 01</span>
+      </div>
+    </section>
+
+    <!-- Main dashboard -->
+    <main id="dashboard" class="dashboard hidden">
+      <div class="sky-layer"></div>
+      <div class="cloud cloud-a"></div>
+      <div class="cloud cloud-b"></div>
+      <div class="cloud cloud-c"></div>
+
+      <header class="topbar">
+        <div></div>
+        <div class="brand-mark">Learn<span>X</span></div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-art glass-panel">
+          <img src="assets/learnx-anime.gif" alt="Animasi karakter LearnX">
+        </div>
+        <div class="hero-copy">
+          <span class="eyebrow">WELCOME BACK</span>
+          <h1>Belajar lebih jauh.<br><em>Berpikir lebih tajam.</em></h1>
+          <p>Semua modul dalam satu ruang belajar yang ringan dan terasa hidup.</p>
+        </div>
+      </section>
+
+      <section class="subject-section">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">LEARNING SPACE</span>
+            <h2>Pilih mata pelajaran</h2>
+          </div>
+          <span class="scroll-hint">Geser →</span>
+        </div>
+
+        <div id="subjectRail" class="subject-rail">
+          <!-- injected by JS -->
+        </div>
+      </section>
+
+      <section class="modules">
+        <button class="module-card glass-panel" data-module="quran">
+          <div class="module-icon">☾</div>
+          <div>
+            <span>MODUL 01</span>
+            <h3>Al-Qur'an</h3>
+            <p>Surah, ayat, terjemahan & audio.</p>
+          </div>
+          <b>→</b>
+        </button>
+        <button class="module-card glass-panel" data-module="study">
+          <div class="module-icon">✦</div>
+          <div>
+            <span>MODUL 02</span>
+            <h3>Belajar</h3>
+            <p>Materi, cara mengerjakan & latihan.</p>
+          </div>
+          <b>→</b>
+        </button>
+      </section>
+
+      <button id="musicButton" class="music-pill glass-panel" aria-label="Buka musik Spotify">
+        <span class="music-dot"></span>
+        <span>Music</span>
+        <small>Spotify</small>
+      </button>
+
+      <!-- Dynamic island -->
+      <div id="dynamicIsland" class="dynamic-island glass-panel">
+        <span class="island-cover">♪</span>
+        <div class="island-meta">
+          <strong>LearnX Music</strong>
+          <small>Spotify</small>
+        </div>
+        <button id="islandPlay" aria-label="Putar / jeda">▶</button>
+      </div>
+
+      <!-- Panels -->
+      <section id="studyPanel" class="sheet hidden">
+        <div class="sheet-inner glass-panel">
+          <button class="close-sheet">×</button>
+          <span class="eyebrow">SMART STUDY</span>
+          <h2>Ruang Belajar</h2>
+          <p>Pilih pelajaran untuk membuka materi, cara mengerjakan, dan latihan.</p>
+          <div id="studyContent" class="study-content"></div>
+        </div>
+      </section>
+
+      <section id="quranPanel" class="sheet hidden">
+        <div class="sheet-inner glass-panel quran-sheet">
+          <button class="close-sheet">×</button>
+          <span class="eyebrow">QURAN SPACE</span>
+          <h2>Al-Qur'an</h2>
+          <p>Daftar surah dan ayat ditampilkan dari sumber Qur'an online saat koneksi tersedia.</p>
+          <div id="surahList" class="surah-list"></div>
+          <div id="ayahViewer" class="ayah-viewer hidden"></div>
+        </div>
+      </section>
+
+      <section id="spotifyPanel" class="sheet hidden">
+        <div class="sheet-inner glass-panel spotify-sheet">
+          <button class="close-sheet">×</button>
+          <span class="eyebrow">MUSIC SPACE</span>
+          <h2>Spotify</h2>
+          <p>Masukkan URL playlist/album/track Spotify yang ingin dipakai. Browser akan membukanya dalam pemutar Spotify resmi.</p>
+          <div class="spotify-row">
+            <input id="spotifyUrl" type="url" placeholder="https://open.spotify.com/..." autocomplete="off">
+            <button id="spotifyOpen" class="action-btn">Pasang</button>
+          </div>
+          <div class="spotify-note">Catatan: pemutaran Spotify di web mengikuti login, izin, dan pembatasan dari Spotify.</div>
+        </div>
+      </section>
+
+      <div id="toast" class="toast">Siap.</div>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
